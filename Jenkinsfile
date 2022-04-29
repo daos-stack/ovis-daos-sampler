@@ -40,4 +40,5 @@
 // I.e. for testing library changes
 //@Library(value="pipeline-lib@your_branch") _
 
-packageBuildingPipeline(['distros': ['leap15']])
+packageBuildingPipeline(['distros': ['leap15'],
+			 'rpmlint_rpms_allow_errors': true])

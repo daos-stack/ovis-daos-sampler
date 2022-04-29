@@ -2,10 +2,10 @@
 
 Name:           ovis-daos-sampler
 Version:        1.0.0
-Release:        0
+Release:        1
 Summary:        DAOS sampler for LDMS
 License:        GPLv2
-Group:          System Environment/Libraries
+Group:          System/Libraries
 Url:            https://github.com/ovis-hpc/ovis
 Source:         https://github.com/daos-stack/ovis/archive/refs/tags/%{_tag}.tar.gz
 BuildRequires:  gettext-devel
@@ -68,8 +68,7 @@ make %{?_smp_mflags}
 
 %install
 %{__make} DESTDIR=%{?buildroot} install-strip -C ldms/src/contrib/sampler/daos
-rm -f $RPM_BUILD_ROOT/%{_libdir}/ovis-ldms/libdaos_sampler.{a,la,so}
-
+rm -f $RPM_BUILD_ROOT/%{_libdir}/ovis-ldms/libdaos_sampler.{a,la}
 
 %files
 %defattr(-,root,root)
@@ -77,5 +76,8 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/ovis-ldms/libdaos_sampler.{a,la,so}
 %{_mandir}/man7/Plugin_daos_sampler.7.gz
 
 %changelog
+* Fri Apr 29 2022 Michael J. MacDonald <mjmac.macdonald@intel.com> - 1.0.0-1
+- Restore libdaos_sampler.so (ldmsd wants to see it); disable rpmlint errors.
+
 * Thu Apr 28 2022 Michael J. MacDonald <mjmac.macdonald@intel.com> - 1.0.0-0
 - Initial packaging
